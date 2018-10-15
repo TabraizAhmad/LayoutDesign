@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".MainActivity"
+    android:layout_marginBottom="4dp"
+    android:paddingRight="8dp"
+    android:paddingEnd="8dp">
+
+    <ImageView
+        android:id="@+id/firstItemImage"
+        android:layout_width="72dp"
+        android:layout_height="72dp"
+        android:src="@drawable/best_seller"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent" />
+
+    <TextView
+        android:id="@+id/firstItemBrand"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingLeft="4dp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@+id/firstItemImage"
+        app:layout_constraintTop_toTopOf="@+id/firstItemImage"
+        android:paddingStart="4dp" />
+
+
+    <TextView
+        android:id="@+id/firstItemDescription"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingLeft="4dp"
+        app:layout_constraintStart_toEndOf="@+id/firstItemImage"
+        app:layout_constraintTop_toBottomOf="@+id/firstItemBrand"
+        android:paddingStart="4dp" />
+
+    <Button
+        android:id="@+id/firstItemAdd"
+        android:layout_width="64dp"
+        android:layout_height="32dp"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/firstItemDescription"
+        android:text="@string/add"
+        android:textColor="@color/white"
+        android:background="@drawable/button_rounded_border_red"
+        />
+
+    <TextView
+        android:id="@+id/firstItemPrice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="@+id/firstItemAdd"
+        app:layout_constraintStart_toEndOf="@+id/firstItemImage"
+        android:textStyle="bold"
+        />
+
+    <TextView
+        android:id="@+id/reducedPrice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="@+id/firstItemPrice"
+        app:layout_constraintStart_toEndOf="@+id/firstItemPrice"
+        android:textColor="@color/red"
+        android:paddingLeft="2dp"
+        />
+
+</android.support.constraint.ConstraintLayout>
