@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">LayoutDesign</string>
+    <string name="bestsellers">Best Seller</string>
+    <string name="view_all">View All</string>
 </resources>

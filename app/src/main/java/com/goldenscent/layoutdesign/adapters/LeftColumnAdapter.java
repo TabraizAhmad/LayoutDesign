@@ -40,7 +40,9 @@ public class LeftColumnAdapter extends RecyclerView.Adapter<LeftColumnAdapter.Le
         LeftColumnData dummyData = leftColumnDataList.get(position);
         holder.itemIcon.setImageResource(dummyData.getResId());
         holder.itemName.setText(dummyData.getName());
-        
+        if(dummyData.isSelected()){
+
+        }
     }
 
     @Override
