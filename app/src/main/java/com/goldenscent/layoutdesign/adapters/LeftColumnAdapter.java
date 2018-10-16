@@ -1,11 +1,10 @@
 package com.goldenscent.layoutdesign.adapters;
 
-import android.graphics.Canvas;
-import android.graphics.Color;
-import android.graphics.Paint;
+import android.content.Context;
 import android.os.Build;
 import android.support.annotation.NonNull;
 import android.support.annotation.RequiresApi;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,17 +12,23 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
 import com.goldenscent.layoutdesign.R;
 import com.goldenscent.layoutdesign.dummyData.LeftColumnData;
+
 import java.util.List;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class LeftColumnAdapter extends RecyclerView.Adapter<LeftColumnAdapter.LeftColumnViewHolder> {
 
     private List<LeftColumnData> leftColumnDataList;
-    public LeftColumnAdapter(List<LeftColumnData> leftColumnDataList) {
+    Context mContext;
+    public LeftColumnAdapter(List<LeftColumnData> leftColumnDataList,Context context) {
         this.leftColumnDataList = leftColumnDataList;
+        mContext = context;
+
     }
 
     @NonNull
@@ -41,7 +46,7 @@ public class LeftColumnAdapter extends RecyclerView.Adapter<LeftColumnAdapter.Le
         holder.itemIcon.setImageResource(dummyData.getResId());
         holder.itemName.setText(dummyData.getName());
         if(dummyData.isSelected()){
-
+            holder.cardViewLayout.setBackground(ContextCompat.getDrawable(mContext, R.drawable.bottom_border));
         }
     }
 

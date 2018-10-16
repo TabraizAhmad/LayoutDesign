@@ -42,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
         initLeftData();
-        leftColumnAdapter = new LeftColumnAdapter(leftColumnDataList);
+        leftColumnAdapter = new LeftColumnAdapter(leftColumnDataList, this);
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext(), LinearLayoutManager.VERTICAL, false);
         leftColumn.setLayoutManager(mLayoutManager);
         leftColumn.setAdapter(leftColumnAdapter);
@@ -76,6 +76,7 @@ public class MainActivity extends AppCompatActivity {
         leftColumnDataList.add(new LeftColumnData("Beauty Tools",R.drawable.ic_card_giftcard));
         leftColumnDataList.add(new LeftColumnData("Home Fragnances",R.drawable.ic_card_giftcard));
         leftColumnDataList.add(new LeftColumnData("Men",R.drawable.ic_card_giftcard));
+        leftColumnDataList.get(0).setSelected(true);
 
     }
 
