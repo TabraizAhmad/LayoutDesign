@@ -36,7 +36,7 @@ public class MyExpandableListAdapter extends BaseExpandableListAdapter {
 
     @Override
     public int getChildrenCount(int i) {
-        return mListChildData.get(mListData.get(i)).size();
+        return mListChildData.get(mListData.get(i)).size() + 1;
     }
 
     @Override
@@ -88,24 +88,27 @@ public class MyExpandableListAdapter extends BaseExpandableListAdapter {
     }
 
     @Override
-    public View getChildView(int i, int i1, boolean b, View convertView, ViewGroup viewGroup) {
+    public View getChildView(int i, int i1, boolean isLastChild, View convertView, ViewGroup viewGroup) {
 
-        TextView itemOneName;
-        TextView itemTwoName;
-        TextView itemThreeName;
 
-        if(convertView == null){
+        if(isLastChild) // last element is a Button
+        {
+            LayoutInflater layoutInflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            convertView = layoutInflater.inflate(R.layout.row_botton, null);
+        }else{
+            TextView itemOneName;
+            TextView itemTwoName;
+            TextView itemThreeName;
             LayoutInflater layoutInflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             convertView = layoutInflater.inflate(R.layout.row_group_items, null);
+            itemOneName = convertView.findViewById(R.id.itemOneName);
+            itemTwoName = convertView.findViewById(R.id.itemTwoName);
+            itemThreeName = convertView.findViewById(R.id.itemThreeName);
+            itemOneName.setText(mListChildData.get(mListData.get(i)).get(i1)[0]);
+            itemTwoName.setText(mListChildData.get(mListData.get(i)).get(i1)[1]);
+            itemThreeName.setText(mListChildData.get(mListData.get(i)).get(i1)[2]);
         }
 
-        itemOneName = convertView.findViewById(R.id.itemOneName);
-        itemTwoName = convertView.findViewById(R.id.itemTwoName);
-        itemThreeName = convertView.findViewById(R.id.itemThreeName);
-
-        itemOneName.setText(mListChildData.get(mListData.get(i)).get(i1)[0]);
-        itemTwoName.setText(mListChildData.get(mListData.get(i)).get(i1)[1]);
-        itemThreeName.setText(mListChildData.get(mListData.get(i)).get(i1)[2]);
         return convertView;
     }
 

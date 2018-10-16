@@ -138,5 +138,6 @@ public class MainActivity extends AppCompatActivity {
         adapter = new MyExpandableListAdapter(this, groupData, childData);
         expandableListView.setAdapter(adapter);
         expandableListView.setHeaderDividersEnabled(false);
+        expandableListView.expandGroup(0);
     }
 }
