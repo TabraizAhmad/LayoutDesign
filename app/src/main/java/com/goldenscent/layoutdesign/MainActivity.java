@@ -7,14 +7,17 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.LinearSnapHelper;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SnapHelper;
+import android.widget.ExpandableListView;
 
 import com.goldenscent.layoutdesign.adapters.BestSellerAdapter;
+import com.goldenscent.layoutdesign.adapters.MyExpandableListAdapter;
 import com.goldenscent.layoutdesign.adapters.LeftColumnAdapter;
 import com.goldenscent.layoutdesign.decorater.DividerItemDecoration;
 import com.goldenscent.layoutdesign.dummyData.BestSellerData;
 import com.goldenscent.layoutdesign.dummyData.LeftColumnData;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import butterknife.BindView;
@@ -34,6 +37,12 @@ public class MainActivity extends AppCompatActivity {
 
     BestSellerAdapter bestSellerAdapter;
     List<BestSellerData> bestSellerData;
+
+
+
+    @BindView(R.id.lvExp)
+    ExpandableListView expandableListView;
+    private MyExpandableListAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,6 +66,8 @@ public class MainActivity extends AppCompatActivity {
         SnapHelper startSnapHelper = new LinearSnapHelper();
         startSnapHelper.attachToRecyclerView(bestSellerRecyclerView);
 
+
+        initAccordian();
     }
 
     public void initLeftData(){
@@ -98,4 +109,34 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+
+    public void initAccordian() {
+
+        List<String> groupData = new ArrayList<>();
+        groupData.add("Lips");
+        groupData.add("Face");
+        groupData.add("Nails");
+
+        String[] firstRow = {"Pencils","Lipstick","Lipgloss"};
+        String[] secondRow = {"Treatment","Palette","Lip Balm"};
+        List<String[]> lipsData = new ArrayList<>();
+        lipsData.add(firstRow);
+        lipsData.add(secondRow);
+        List<String[]> faceData = new ArrayList<>();
+        faceData.add(firstRow);
+        faceData.add(secondRow);
+
+        List<String[]> nailsData = new ArrayList<>();
+        nailsData.add(firstRow);
+        nailsData.add(secondRow);
+
+        HashMap<String, List<String[]>> childData = new HashMap<>();
+        childData.put(groupData.get(0), lipsData);
+        childData.put(groupData.get(1), faceData);
+        childData.put(groupData.get(2), nailsData);
+        // Setting up the Adapter
+        adapter = new MyExpandableListAdapter(this, groupData, childData);
+        expandableListView.setAdapter(adapter);
+        expandableListView.setHeaderDividersEnabled(false);
+    }
 }
