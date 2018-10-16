@@ -72,6 +72,7 @@
             android:groupIndicator="@null"
             android:clipToPadding="true"
             android:paddingBottom="12dp"
+            android:background="@color/white"
             />
 
     </LinearLayout>

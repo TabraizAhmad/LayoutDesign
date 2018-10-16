@@ -21,7 +21,7 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class LeftColumnAdapter extends RecyclerView.Adapter<LeftColumnAdapter.LeftColumnViewHolder> {
+public class LeftColumnAdapter extends RecyclerView.Adapter<LeftColumnAdapter.LeftColumnViewHolder> implements View.OnClickListener {
 
     private List<LeftColumnData> leftColumnDataList;
     Context mContext;
@@ -36,6 +36,7 @@ public class LeftColumnAdapter extends RecyclerView.Adapter<LeftColumnAdapter.Le
     public LeftColumnViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View itemView = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.row_left_menu, parent, false);
+        itemView.setOnClickListener(this);
         return new LeftColumnAdapter.LeftColumnViewHolder(itemView);
     }
 
@@ -45,14 +46,32 @@ public class LeftColumnAdapter extends RecyclerView.Adapter<LeftColumnAdapter.Le
         LeftColumnData dummyData = leftColumnDataList.get(position);
         holder.itemIcon.setImageResource(dummyData.getResId());
         holder.itemName.setText(dummyData.getName());
+        holder.itemView.setTag(position);
         if(dummyData.isSelected()){
             holder.cardViewLayout.setBackground(ContextCompat.getDrawable(mContext, R.drawable.bottom_border));
+        }else{
+            holder.cardViewLayout.setBackground(null);
         }
     }
 
     @Override
     public int getItemCount() {
         return leftColumnDataList.size();
+    }
+
+    @Override
+    public void onClick(View v) {
+        removeSelected();
+        int currentPosition = (int) v.getTag();
+        leftColumnDataList.get(currentPosition).setSelected(true);
+        notifyDataSetChanged();
+    }
+
+    private void removeSelected() {
+        for (LeftColumnData dummyData: leftColumnDataList) {
+            if (dummyData.isSelected())
+                dummyData.setSelected(false);
+        }
     }
 
     class LeftColumnViewHolder extends RecyclerView.ViewHolder {

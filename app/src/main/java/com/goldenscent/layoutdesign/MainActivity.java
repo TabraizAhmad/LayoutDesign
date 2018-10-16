@@ -87,7 +87,6 @@ public class MainActivity extends AppCompatActivity {
         leftColumnDataList.add(new LeftColumnData("Beauty Tools",R.drawable.ic_card_giftcard));
         leftColumnDataList.add(new LeftColumnData("Home Fragnances",R.drawable.ic_card_giftcard));
         leftColumnDataList.add(new LeftColumnData("Men",R.drawable.ic_card_giftcard));
-        leftColumnDataList.get(0).setSelected(true);
 
     }
 
@@ -137,7 +136,7 @@ public class MainActivity extends AppCompatActivity {
         // Setting up the Adapter
         adapter = new MyExpandableListAdapter(this, groupData, childData);
         expandableListView.setAdapter(adapter);
-        expandableListView.setHeaderDividersEnabled(false);
+        expandableListView.setDivider(null);
         expandableListView.expandGroup(0);
     }
 }
